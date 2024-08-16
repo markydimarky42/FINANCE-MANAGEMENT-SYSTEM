@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fcedce;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    justify-content: center; /* Centers the container horizontally */
+    align-items: center; /* Centers the container vertically */
+}
+
+.left-side {
+    background-color: #f8cf7d;
+    width: 450px; /* Adjust width as needed */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(7, 7, 7);
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.left-side img {
+    width: 80px;
+    margin-bottom: 20px;
+    border-radius: 38px;
+}
+
+.left-side h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.left-side p {
+    margin-bottom: 20px;
+}
+
+.left-side form {
+    margin-top: 20px;
+    width: 100%; /* Ensure form fields take full width */
+}
+
+.left-side input[type="text"],
+.left-side input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #555;
+    border-radius: 2px;
+    background-color: #333;
+    color: white;
+    box-sizing: border-box; /* Ensure padding doesn't push content out of the box */
+    
+}
+
+.left-side input[type="submit"] {
+    width: 30%;
+    padding: 12px;
+    margin: 15px 0;
+    background: linear-gradient(to right, #ff512f, #dd2476);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.left-side a {
+    color: #3773f3;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.left-side .create-new {
+    border: 1px solid #ff6b6b;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top: 20px;
+    display: inline-block;
+    color: #ff6b6b;
+    transition: background-color 0.3s ease;
+}
+
+.left-side .create-new:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
