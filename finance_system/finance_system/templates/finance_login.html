@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Passenger Seat</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='imgs/tab_img.png') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/login.css') }}"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="left">
+        <img
+          src="{{ url_for('static', filename='imgs/passenger_seat_logo.png') }}"
+          alt="Passenger Seat Logo"
+        />
+      </div>
+      <div class="right">
+        <div class="form-container">
+          <h2>Login</h2>
+          <form>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+              autocomplete="off"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

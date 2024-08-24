@@ -1,0 +1,61 @@
+import datetime
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from finance_system.db import mysql
+import uuid
+
+journal_entries_bp = Blueprint('journal_entries', __name__)
+
+def generate_je_record_number():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT COUNT(id) FROM journal_entries")
+    count = cursor.fetchone()['COUNT(id)']
+    je_record_number = f'JE-{datetime.datetime.now().strftime("%Y%m%d")}-{count + 1}'
+    cursor.close()
+    
+    return je_record_number
+
+@journal_entries_bp.route('/add_entry', methods=['POST'])
+def add_entry():
+    je_record_number = request.form['je_record_number']
+    date = request.form['date']
+    period = request.form['period']
+    description = request.form['description']
+    debits = request.form.getlist('debit[]')
+    credits = request.form.getlist('credit[]')
+    account_numbers = request.form.getlist('account_number[]')
+    account_titles = request.form.getlist('account_title[]')
+    particulars = request.form.getlist('particulars[]')
+
+    cursor = mysql.connection.cursor()
+    for debit, credit, account_number, account_title, particular in zip(debits, credits, account_numbers, account_titles, particulars):
+        cursor.execute("""
+            INSERT INTO journal_entries (je_record_number, date, period, description, debit, credit, account_number, account_name, particulars) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (je_record_number, date, period, description, debit, credit, account_number, account_title, particular))
+    mysql.connection.commit()
+    cursor.close()
+
+    return redirect(url_for('journal_entries.display_entries'))
+
+@journal_entries_bp.route('/')
+def display_entries():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM journal_entries")
+    journal_entries = cursor.fetchall()
+    cursor.close()
+    
+    return render_template('journal_entries.html', journal_entries=journal_entries)
+
+@journal_entries_bp.route('/add_entry_modal')
+def add_entry_modal():
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT account_number, account_title, account_category FROM chart_of_accounts")
+        accounts = cursor.fetchall()
+        cursor.close()
+    except Exception as e:
+        print(f"Error fetching accounts: {e}")
+        accounts = []  # Fallback to empty list if an error occurs
+    
+    return render_template('journal_entries.html', accounts=accounts)
+

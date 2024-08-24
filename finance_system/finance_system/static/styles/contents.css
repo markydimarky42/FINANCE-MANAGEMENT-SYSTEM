@@ -1,0 +1,323 @@
+/* CSS Variables for Consistency and Ease of Management */
+:root {
+    --primary-color: #c8131a;
+    --secondary-color: #ff6b6b;
+    --background-color: #fdf8ed;
+    --text-color: #333;
+    --sidebar-width: 15%;
+    --sidebar-expanded-width: 200px;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background: linear-gradient(180deg, #ffffff, #f0f0f0);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-right: 1px solid #ddd;
+    transition: width 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.expanded {
+    width: var(--sidebar-expanded-width);
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    flex: 1;
+    width: 100%;
+}
+
+.menu-item {
+    margin-bottom: 20px;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-start; /* Align items to start */
+    align-items: center; /* Vertically center items */
+    padding: 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+.menu-item a i {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 20px; /* Ensure icons are of consistent size */
+    flex-shrink: 0; /* Prevent icons from shrinking */
+}
+.menu-item a .menu-text {
+    display: none;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.sidebar.expanded .menu-item a {
+    justify-content: flex-start; /* Align content to the left in expanded view */
+    padding-left: 20px;
+}
+
+.sidebar.expanded .menu-item a .menu-text {
+    display: inline-block;
+    flex-grow: 1; /* Ensure text takes the remaining space */
+}
+
+.menu-item.active a {
+    position: relative;
+    color: white;
+    background-color: var(--primary-color);
+}
+
+.menu-item.active a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 100%;
+    background-color: var(--secondary-color);
+}
+
+.menu-item a:hover {
+    color: white;
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.menu-item a:hover i {
+    transform: scale(1.1);
+}
+
+.settings {
+    margin-top: auto;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.settings a {
+    color: var(--text-color);
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.sidebar.expanded .settings a {
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.settings a .menu-text {
+    display: none;
+    margin-left: 10px;
+}
+
+.sidebar.expanded .settings a .menu-text {
+    display: inline-block;
+}
+
+.settings a:hover {
+    background-color: #e6e6e6;
+}
+
+.settings a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+    background-color: var(--background-color);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+/* Additional Styles for Profile Section */
+.profile-section {
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    text-align: center; /* Center the text within the h3 element */
+    background-color: #ffffff; /* Optional: background color */
+    padding: 10px; /* Optional: padding */
+    border-radius: 10px; /* Optional: border radius */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for aesthetics */
+    margin-bottom: 30px;
+}
+
+.profile-section h3 {
+    margin: 0; /* Remove default margin */
+    font-size: 30px; /* Optional: adjust the font size */
+    font-weight: 900; /* Optional: set the font weight */
+    color: var(--text-color); /* Use the defined text color */
+    text-align: center; /* Ensure the text is centered within the h3 */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 50px;
+        overflow-y: auto;
+    }
+
+    .sidebar.expanded {
+        width: 150px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-section img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-section h3 {
+        font-size: 16px;
+    }
+}
+
+/* Design for the Financial Dashboard Contents */
+
+.dashboardpt1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--background-color); /* Optional: background color */
+    border-radius: 10px; /* Optional: border radius */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for aesthetics */
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #ffffff; /* White background for cards */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center; /* Center the content within each card */
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color); /* Consistent text color */
+}
+
+.card h1 {
+    margin: 0 0 10px;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color); /* Primary color for the important figures */
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    color: #666; /* Subtle color for additional information */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+
+
+.dashboardpt2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2  equal-width columns */
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--background-color); /* Optional: background color */
+    border-radius: 10px; /* Optional: border radius */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for aesthetics */
+}
+
+.card {
+    background-color: #ffffff; /* White background for cards */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center; /* Center the content within each card */
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color); /* Consistent text color */
+}
+
+.card h1 {
+    margin: 0 0 10px;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color); /* Primary color for the important figures */
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    color: #666; /* Subtle color for additional information */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+

@@ -1,0 +1,56 @@
+# from flask import Blueprint, jsonify, render_template, request
+# from finance_system.db import mysql
+
+# chart_of_accounts_bp = Blueprint('chart_of_accounts', __name__)
+
+# @chart_of_accounts_bp.route('/')
+# def view():
+#     cur = mysql.connection.cursor()
+#     cur.execute("SELECT * FROM chart_of_accounts ORDER BY account_number ASC")
+#     accounts = cur.fetchall()
+#     cur.close()
+
+#     return render_template('chart_of_accounts.html', accounts=accounts)
+
+# @chart_of_accounts_bp.route('/add', methods=['POST'])
+# def add_account():
+#     account_number = request.form['accountNumber']
+#     account_title = request.form['accountTitle']
+#     account_category = request.form['accountCategory']
+
+#     cur = mysql.connection.cursor()
+#     cur.execute("INSERT INTO chart_of_accounts (account_number, account_title, account_category) VALUES (%s, %s, %s)", 
+#                 (account_number, account_title, account_category))
+#     mysql.connection.commit()
+#     cur.close()
+
+#     return jsonify({'status': 'success'})
+
+# @chart_of_accounts_bp.route('/edit', methods=['POST'])
+# def edit_account():
+#     account_id = request.form['id']
+#     account_number = request.form['accountNumber']
+#     account_title = request.form['accountTitle']
+#     account_category = request.form['accountCategory']
+
+#     cur = mysql.connection.cursor()
+#     cur.execute("""
+#         UPDATE chart_of_accounts
+#         SET account_number = %s, account_title = %s, account_category = %s
+#         WHERE id = %s
+#     """, (account_number, account_title, account_category, account_id))
+#     mysql.connection.commit()
+#     cur.close()
+
+#     return jsonify({'status': 'success'})
+
+# @chart_of_accounts_bp.route('/delete', methods=['POST'])
+# def delete_account():
+#     account_number = request.form['accountNumber']
+
+#     cur = mysql.connection.cursor()
+#     cur.execute("DELETE FROM chart_of_accounts WHERE account_number = %s", [account_number])
+#     mysql.connection.commit()
+#     cur.close()
+
+#     return jsonify({'status': 'success'})
