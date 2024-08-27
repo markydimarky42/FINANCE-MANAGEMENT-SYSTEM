@@ -1,13 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const rowTemplate = document.getElementById("journalRowTemplate");
-  let rowToDelete = null;
-
+  // Shared account data
   const accountNumbers = [
     { id: 1, number: "1001", name: "Cash" },
     { id: 2, number: "1002", name: "Accounts Receivable" },
     { id: 3, number: "2001", name: "Accounts Payable" },
   ];
 
+  // Get the edit row template
+  const editRowTemplate = document.getElementById("editJournalRowTemplate");
+  const editModal = document.getElementById("editModal");
+  const editJournalTableBody = document
+    .getElementById("edit-journalTable")
+    .querySelector("tbody");
+  const editAddRowButton = document.getElementById("edit-addRow");
+  let rowToDelete = null;
+
+  // Function to populate dropdowns with account numbers and names
   function populateRow(row) {
     const accountNumberDropdown = row.querySelector(".account-number-dropdown");
     const accountNameDropdown = row.querySelector(".account-name-dropdown");
@@ -25,28 +33,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Function to add a new row to the journal table body
   function addNewRow(journalTableBody) {
-    const newRow = rowTemplate.content.cloneNode(true);
+    const newRow = editRowTemplate.content.cloneNode(true);
     populateRow(newRow);
     journalTableBody.appendChild(newRow);
   }
 
-  const newModal = document.getElementById("newModal");
-  const journalTableBody = document
-    .getElementById("journalTable")
-    .querySelector("tbody");
-  const addRowButton = document.getElementById("addRow");
-
-  newModal.addEventListener("show.bs.modal", () => {
-    journalTableBody.innerHTML = ""; // Clear existing rows
-    addNewRow(journalTableBody); // Add one empty row
+  // Event listener for the 'Edit' modal show event
+  editModal.addEventListener("show.bs.modal", () => {
+    editJournalTableBody.innerHTML = ""; // Clear existing rows
+    addNewRow(editJournalTableBody); // Add one empty row
   });
 
-  addRowButton.addEventListener("click", () => {
-    addNewRow(journalTableBody);
+  // Add new row on button click
+  editAddRowButton.addEventListener("click", () => {
+    addNewRow(editJournalTableBody);
   });
 
-  journalTableBody.addEventListener("change", (event) => {
+  // Event listener for dropdown changes to sync account numbers and names
+  editJournalTableBody.addEventListener("change", (event) => {
     if (event.target.classList.contains("account-number-dropdown")) {
       const selectedNumber = event.target.value;
       const nameDropdown = event.target
@@ -68,7 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  journalTableBody.addEventListener("click", function (e) {
+  // Remove row with confirmation if populated
+  editJournalTableBody.addEventListener("click", function (e) {
     if (e.target.classList.contains("remove-row")) {
       e.preventDefault(); // Prevent default button action
       const row = e.target.closest("tr");
@@ -93,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Confirm delete row
   document
     .getElementById("confirmDelete")
     .addEventListener("click", function () {

@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // document
+  //   .getElementById("save-new-btn")
+  //   .addEventListener("click", function () {
+  //     document.getElementById("new-account-form").submit();
+  //   });
+
   function showSuccessModal(message) {
     document.getElementById("successMessage").textContent = message;
     const successModal = new bootstrap.Modal(

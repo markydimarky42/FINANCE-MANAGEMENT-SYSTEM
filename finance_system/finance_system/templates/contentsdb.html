@@ -34,29 +34,40 @@
                     <a href="{{ url_for('chart_of_accounts.display_chart_of_accounts') }}" title="Chart of Accounts"><i class="fas fa-chart-line"></i><span class="menu-text"></span>
                         <span class="text nav-text">Chart of Accounts</span>
                     </a>
+                    
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Manage Account Type</a></li>
+                    </ul>
                 </li>
 
                 <li class="menu-item">
                     <a href="{{ url_for('journal_entries.journal_entry') }}" title="Journal Entry"><i class="fas fa-cash-register"></i><span class="menu-text"></span>
                         <span class="text nav-text">Journal Entry</span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Manage Source</a></li>
+                    </ul>
                 </li>
 
                 <li class="menu-item">
+                    <a href="#" title="general_ledger"><i class="fas fa-file-invoice-dollar"></i><span class="menu-text"></span>
+                        <span class="text nav-text">General Ledger</span>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="#" title="finance_book"><i class="fas fa-book"></i><span class="menu-text"></span>
+                        <span class="text nav-text">Book</span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Manage Book</a></li>
+                    </ul>
+                </li>
+                
+                <li class="menu-item">
                     <a href="#" title="Financial Report"><i class="fas fa-boxes"></i><span class="menu-text"></span>
                         <span class="text nav-text">Financial Report</span>
-                    </a>
-                </li>
-                
-                
-                <li class="menu-item">
-                    <a href="#" title="Analytics"><i class="fas fa-user-cog"></i><span class="menu-text"></span>
-                        <span class="text nav-text">Analytics</span>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" title="Settings"><i class="fas fa-cog"></i><span class="menu-text"></span>
-                        <span class="text nav-text">Settings</span>
                     </a>
                 </li>
 

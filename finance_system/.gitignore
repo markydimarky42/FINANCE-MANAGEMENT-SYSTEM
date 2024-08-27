@@ -2,3 +2,6 @@ finance-env
 .env
 .vscode
 __pycache__
+coa_routes.txt
+je_routes.txt
+
